@@ -1,0 +1,8 @@
+#!/bin/bash
+
+swap_dev=$(sudo blkid | grep swap | awk -F ':' '{print $1}')
+sudo swapoff $swap_dev
+sudo swapon $swap_dev
+
+sudo sh -c 'echo "3" > /proc/sys/vm/drop_caches'
+free -m
